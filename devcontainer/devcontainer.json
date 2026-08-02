@@ -1,0 +1,36 @@
+{
+  "name": "Go Backend Dev Environment",
+
+  // Prebuilt Microsoft image with Go already installed — no manual install needed
+  "image": "mcr.microsoft.com/devcontainers/go:1.22",
+
+  // Useful VS Code extensions auto-installed on first launch
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker",
+        "humao.rest-client"
+      ],
+      "settings": {
+        "go.toolsManagement.autoUpdate": true,
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
+      }
+    }
+  },
+
+  // Runs once when the codespace is first created
+  "postCreateCommand": "go version && go install golang.org/x/tools/gopls@latest",
+
+  // Ports auto-forwarded if you run a local server (e.g. go run main.go on :8080)
+  "forwardPorts": [8080, 5432],
+
+  // Optional: spin up a Postgres database alongside your Go environment
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  "remoteUser": "vscode"
+}
